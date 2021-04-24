@@ -1,4 +1,5 @@
 const getErrorMessage = (error: any) => {
+  console.error(error)
   if (typeof error === "string") {
     return error
   }

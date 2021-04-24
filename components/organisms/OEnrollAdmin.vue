@@ -2,27 +2,22 @@
   <v-row class="d-flex justify-center align-center">
     <v-col>
       <v-form
-        id="login"
+        id="enroll-admin"
         ref="form"
         lazy-validation
-        @submit.prevent="login">
+        @submit.prevent="enrollAdmin">
         <v-text-field
-          v-model="loginPayload.username"
+          v-model="enrollAdminPayload.orgName"
           :rules="isNotEmptyRule"
-          label="Username"
+          label="Organization name"
           type="text" />
-        <v-text-field
-          v-model="loginPayload.password"
-          :rules="isNotEmptyRule"
-          label="Password"
-          type="password" />
       </v-form>
       <v-btn
+        form="enroll-admin"
         class="mt-4"
-        form="login"
         type="form"
         color="primary">
-        Login
+        Enroll admin
       </v-btn>
     </v-col>
   </v-row>
@@ -30,24 +25,24 @@
 
 <script lang="ts">
 import { Component, mixins } from "nuxt-property-decorator"
-import { LoginInterface } from "~/interfaces/auth.interface"
+import { EnrollAdminInterface } from "~/interfaces/auth.interface"
 import { RouteMixin } from "~/mixins/route.mixin"
 import { FormMixin } from "~/mixins/form.mixin"
 
 @Component({
-  name: "OLogin"
+  name: "OEnrollAdmin"
 })
-export default class OLogin extends mixins(RouteMixin, FormMixin) {
-  loginPayload: LoginInterface = {
-    username: "",
-    password: ""
+export default class OEnrollAdmin extends mixins(RouteMixin, FormMixin) {
+  enrollAdminPayload: EnrollAdminInterface = {
+    orgName: ""
   }
 
-  async login (): Promise<void> {
+  async enrollAdmin (): Promise<void> {
     if (!(this.$refs.form as HTMLFormElement).validate()) { return }
     try {
-      await this.$store.dispatch("auth/login", this.loginPayload)
-      this.$router.push(this.toRoute(this.RoutePaths.DASHBOARD))
+      const password =
+        await this.$store.dispatch("auth/enrollAdmin", this.enrollAdminPayload)
+      alert(password)
     } catch (error) {
       this.$showErrorMessage(error)
     }

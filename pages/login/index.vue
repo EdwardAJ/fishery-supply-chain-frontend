@@ -7,11 +7,11 @@ import { Vue, Component } from "nuxt-property-decorator"
 import TLogin from "~/components/templates/TLogin.vue"
 
 @Component({
-  name: "Login",
+  name: "LoginPage",
+  middleware: ["not-authenticated"],
   components: {
     TLogin
   }
 })
-
-export default class Login extends Vue {}
+export default class LoginPage extends Vue {}
 </script>

@@ -1,7 +1,8 @@
 import { Middleware } from "@nuxt/types"
 
 const notAuthenticated: Middleware = ({ store, redirect }): void => {
-  if (store.getters["authentication/getAccessToken"]) {
+  console.log("panggil")
+  if (store.getters["auth/getAccessToken"]) {
     redirect("/dashboard")
   }
 }

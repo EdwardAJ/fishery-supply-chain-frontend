@@ -9,7 +9,6 @@
 
 import { Vue, Component } from "nuxt-property-decorator"
 import OSnackbar from "~/components/organisms/OSnackbar.vue"
-
 @Component({
   name: "Default",
   components: {

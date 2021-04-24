@@ -1,19 +1,20 @@
 /* eslint-disable camelcase */
 import { VuexModule, Module, Mutation, Action } from "vuex-module-decorators"
-import cookies from "js-cookie"
+import { setCookie, removeCookie } from "~/utils/client-cookie.util"
 
 import {
   LoginInterface, RegisterInterface, EnrollAdminInterface
-} from "~/interfaces/authentication.interface"
+} from "~/interfaces/auth.interface"
 import { $axios } from "~/utils/api.util"
-import { cookie } from "~/constants/cookie/cookie.constant"
+import { CookieNames, CookieExpiryDay } from "~/constants/cookie/cookie.constant"
 
 @Module({
   namespaced: true,
   stateFactory: true
 })
-export default class Authentication extends VuexModule {
+export default class Auth extends VuexModule {
   token: string | null = null
+  organization: string | null = null
 
   @Mutation
   setAccessToken (token: string | null): void {
@@ -21,13 +22,8 @@ export default class Authentication extends VuexModule {
   }
 
   @Mutation
-  setCookie ({ name, value }): void {
-    cookies.set(name, value, { expires: cookie.NUMBER_OF_DAY_BEFORE_EXPIRED })
-  }
-
-  @Mutation
-  removeCookie (name: string): void {
-    cookies.remove(name)
+  setOrganization (organization: string | null): void {
+    this.organization = organization
   }
 
   @Action({ rawError: true })
@@ -38,10 +34,11 @@ export default class Authentication extends VuexModule {
 
   @Action({ rawError: true })
   async login (payload: LoginInterface): Promise<void> {
-    const { data: { token } } = await $axios.$post("/login", payload)
-    this.context.commit("setCookie", {
-      name: cookie.AUTH_COOKIE_NAME, value: token
-    })
+    const { data: { token, organization } } = await $axios.$post("/login", payload)
+    this.context.commit("setAccessToken", token)
+    this.context.commit("setOrganization", organization)
+    setCookie(CookieNames.AUTH, token, CookieExpiryDay.ONE_DAY)
+    setCookie(CookieNames.ORGANIZATION, organization, CookieExpiryDay.ONE_DAY)
   }
 
   @Action({ rawError: true })
@@ -53,10 +50,15 @@ export default class Authentication extends VuexModule {
   @Action({ rawError: true })
   logout (): void {
     this.context.commit("setAccessToken", null)
-    this.context.commit("removeCookie", cookie.AUTH_COOKIE_NAME)
+    removeCookie(CookieNames.AUTH)
+    removeCookie(CookieNames.ORGANIZATION)
   }
 
   get getAccessToken (): string | null {
     return this.token
+  }
+
+  get getOrganization (): string | null {
+    return this.organization
   }
 }

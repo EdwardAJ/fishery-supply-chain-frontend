@@ -1,8 +1,13 @@
-const cookie = {
-  AUTH_COOKIE_NAME: "Authorization",
-  NUMBER_OF_DAY_BEFORE_EXPIRED: 1
+enum CookieNames {
+  AUTH = "Authorization",
+  ORGANIZATION = "Organization"
+}
+
+enum CookieExpiryDay {
+  ONE_DAY = 1
 }
 
 export {
-  cookie
+  CookieNames,
+  CookieExpiryDay
 }

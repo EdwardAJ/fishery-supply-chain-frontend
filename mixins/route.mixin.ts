@@ -1,21 +1,21 @@
 import { Location } from "vue-router"
 import { Vue, Component } from "nuxt-property-decorator"
-import { RouteNames } from "~/constants/routes.constant"
+import { RoutePaths } from "~/constants/routes.constant"
 
-type routeNameEnumKey = keyof typeof RouteNames
+type routeNameEnumKey = keyof typeof RoutePaths
 type Dictionary<T> = { [key: string]: T }
 
 @Component({
   name: "RouteMixin"
 })
 export class RouteMixin extends Vue {
-  public RouteNames: { [x in routeNameEnumKey]: RouteNames } = RouteNames
+  public RoutePaths: { [x in routeNameEnumKey]: RoutePaths } = RoutePaths
 
   public toRoute (
-    name: RouteNames,
+    path: RoutePaths,
     params ?: Dictionary<string>,
     query ?: Dictionary<string | (string | null)[]>
   ): Location {
-    return { name, params, query }
+    return { path, params, query }
   }
 }
