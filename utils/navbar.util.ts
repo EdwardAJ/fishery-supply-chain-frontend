@@ -20,7 +20,6 @@ const BASE_LIST_ITEMS: ListItemInterface[] = [
 // KKP RI
 const getMinistryListItems = (): Array<ListItemInterface> => {
   return [
-    ...BASE_LIST_ITEMS,
     {
       title: "Daftarkan Admin",
       to: { path: RoutePaths.ENROLL_ADMIN }

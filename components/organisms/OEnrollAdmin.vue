@@ -26,13 +26,12 @@
 <script lang="ts">
 import { Component, mixins } from "nuxt-property-decorator"
 import { EnrollAdminInterface } from "~/interfaces/auth.interface"
-import { RouteMixin } from "~/mixins/route.mixin"
 import { FormMixin } from "~/mixins/form.mixin"
 
 @Component({
   name: "OEnrollAdmin"
 })
-export default class OEnrollAdmin extends mixins(RouteMixin, FormMixin) {
+export default class OEnrollAdmin extends mixins(FormMixin) {
   enrollAdminPayload: EnrollAdminInterface = {
     orgName: ""
   }

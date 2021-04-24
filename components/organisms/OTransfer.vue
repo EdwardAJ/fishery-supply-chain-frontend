@@ -5,44 +5,57 @@
         id="transfer"
         ref="form"
         lazy-validation
-        @submit.prevent="enrollAdmin">
+        @submit.prevent="transfer">
         <v-text-field
-          v-model="enrollAdminPayload.orgName"
+          v-model="transferPayload.currentLot.id"
           :rules="isNotEmptyRule"
-          label="Organization name"
+          label="ID Ikan"
           type="text" />
+        <v-select
+          v-model="transferPayload.toOrganization"
+          label="Organisasi tujuan"
+          :items="ORG_NAME_ARRAY" />
       </v-form>
-      <v-btn
-        form="transfer"
-        class="mt-4"
-        type="form"
-        color="primary">
-        Transfer
-      </v-btn>
+      <v-row>
+        <v-col class="text-right">
+          <v-btn
+            form="transfer"
+            class="mt-4"
+            type="form"
+            color="primary">
+            Transfer
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>
 
 <script lang="ts">
 import { Component, mixins } from "nuxt-property-decorator"
-import { EnrollAdminInterface } from "~/interfaces/auth.interface"
+import { ORG_NAME_ARRAY } from "~/constants/organization.constant"
+import { TransferInterface } from "~/interfaces/transfer.interface"
 import { RouteMixin } from "~/mixins/route.mixin"
 import { FormMixin } from "~/mixins/form.mixin"
 
 @Component({
   name: "OTransfer"
 })
-export default class OEnrollAdmin extends mixins(RouteMixin, FormMixin) {
-  enrollAdminPayload: EnrollAdminInterface = {
-    orgName: ""
+export default class OTransfer extends mixins(RouteMixin, FormMixin) {
+  transferPayload: TransferInterface = {
+    currentLot: {
+      id: ""
+    },
+    toOrganization: ""
   }
 
-  async enrollAdmin (): Promise<void> {
+  ORG_NAME_ARRAY = ORG_NAME_ARRAY
+
+  async transfer (): Promise<void> {
     if (!(this.$refs.form as HTMLFormElement).validate()) { return }
     try {
-      const password =
-        await this.$store.dispatch("auth/enrollAdmin", this.enrollAdminPayload)
-      alert(password)
+      await this.$store.dispatch("transfer/transfer", this.transferPayload)
+      alert(`Successfully transferred to ${this.transferPayload.toOrganization}`)
     } catch (error) {
       this.$showErrorMessage(error)
     }

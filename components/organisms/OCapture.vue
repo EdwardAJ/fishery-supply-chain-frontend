@@ -61,13 +61,12 @@
 <script lang="ts">
 import { Component, mixins } from "nuxt-property-decorator"
 import { CaptureInterface } from "~/interfaces/capture.interface"
-import { RouteMixin } from "~/mixins/route.mixin"
 import { FormMixin } from "~/mixins/form.mixin"
 
 @Component({
   name: "OCapture"
 })
-export default class OCapture extends mixins(FormMixin, RouteMixin) {
+export default class OCapture extends mixins(FormMixin) {
   capturePayload: CaptureInterface = {
     location: {
       longitude: 0,

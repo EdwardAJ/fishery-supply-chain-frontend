@@ -5,6 +5,13 @@ enum OrgNames {
   MINSTRY = "KKP RI"
 }
 
+const ORG_NAME_ARRAY = [
+  "Pelabuhan",
+  "Unit Pengolahan Ikan (UPI)",
+  "Pemasar"
+]
+
 export {
-  OrgNames
+  OrgNames,
+  ORG_NAME_ARRAY
 }
