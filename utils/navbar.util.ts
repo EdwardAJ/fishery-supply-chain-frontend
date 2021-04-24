@@ -33,10 +33,6 @@ const getHarborListItems = (): Array<ListItemInterface> => {
     {
       title: "Tangkap ikan",
       to: { path: RoutePaths.CAPTURE_FISHERY_PRODUCT }
-    },
-    {
-      title: "Olah Ikan",
-      to: { path: RoutePaths.PROCESS }
     }
   ]
 }
@@ -51,6 +47,16 @@ const getProcessingUnitListItems = (): Array<ListItemInterface> => {
   ]
 }
 
+const getMarketerListItems = (): Array<ListItemInterface> => {
+  return [
+    ...BASE_LIST_ITEMS,
+    {
+      title: "Pasarkan Ikan",
+      to: { path: RoutePaths.MARKET }
+    }
+  ]
+}
+
 const getListItems = (orgName: string): Array<ListItemInterface> => {
   switch (orgName) {
     case OrgNames.MINSTRY:
@@ -59,6 +65,8 @@ const getListItems = (orgName: string): Array<ListItemInterface> => {
       return getHarborListItems()
     case OrgNames.PROCESSING_UNIT:
       return getProcessingUnitListItems()
+    case OrgNames.MARKETER:
+      return getMarketerListItems()
     default:
       return []
   }

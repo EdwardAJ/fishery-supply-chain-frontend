@@ -7,6 +7,10 @@
         lazy-validation
         @submit.prevent="process">
         <v-text-field
+          v-model="processPayload.currentLot.id"
+          :rules="isNotEmptyRule"
+          label="ID Ikan Sekarang" />
+        <v-text-field
           v-model="processPayload.location.latitude"
           :rules="isNotEmptyRule"
           label="Latitude"
@@ -66,12 +70,12 @@ import { FormMixin } from "~/mixins/form.mixin"
 })
 export default class OProcess extends mixins(FormMixin) {
   processPayload: ProcessInterface = {
+    currentLot: {
+      id: ""
+    },
     location: {
       longitude: 0,
       latitude: 0
-    },
-    currentLot: {
-      id: ""
     },
     supplier: {
       id: "",
@@ -90,9 +94,8 @@ export default class OProcess extends mixins(FormMixin) {
   async process (): Promise<void> {
     if (!(this.$refs.form as HTMLFormElement).validate()) { return }
     try {
-      const lotId =
-        await this.$store.dispatch("process/process", this.processPayload)
-      alert(`Id Ikan hasil olahan: ${lotId}`)
+      await this.$store.dispatch("process/process", this.processPayload)
+      alert("Ikan berhasil diolah!")
     } catch (error) {
       console.log(error)
       this.$showErrorMessage(error)

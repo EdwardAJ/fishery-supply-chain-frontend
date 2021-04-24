@@ -6,10 +6,10 @@
         ref="form"
         lazy-validation
         @submit.prevent="enrollAdmin">
-        <v-text-field
+        <v-select
           v-model="enrollAdminPayload.orgName"
-          :rules="isNotEmptyRule"
-          label="Organization name" />
+          label="Nama Organisasi"
+          :items="ORG_NAME_ARRAY" />
       </v-form>
       <v-btn
         form="enroll-admin"
@@ -26,6 +26,7 @@
 import { Component, mixins } from "nuxt-property-decorator"
 import { EnrollAdminInterface } from "~/interfaces/auth.interface"
 import { FormMixin } from "~/mixins/form.mixin"
+import { ORG_NAME_ARRAY } from "~/constants/organization.constant"
 
 @Component({
   name: "OEnrollAdmin"
@@ -34,6 +35,8 @@ export default class OEnrollAdmin extends mixins(FormMixin) {
   enrollAdminPayload: EnrollAdminInterface = {
     orgName: ""
   }
+
+  ORG_NAME_ARRAY = ORG_NAME_ARRAY
 
   async enrollAdmin (): Promise<void> {
     if (!(this.$refs.form as HTMLFormElement).validate()) { return }

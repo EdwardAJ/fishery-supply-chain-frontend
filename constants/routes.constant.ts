@@ -6,6 +6,7 @@ enum RoutePaths {
   PROCESS = "/dashboard/process",
   TRANSFER = "/dashboard/transfer",
   COMBINE = "/dashboard/combine",
+  MARKET = "/dashboard/market",
   SPLIT = "/dashboard/split"
 }
 
