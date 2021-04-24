@@ -1,11 +1,8 @@
+import { FisheryProductLotInterface } from "./fishery-product-lot.interface";
+
 interface GPSLocationInterface {
   latitude: number,
   longitude: number
-}
-
-interface FisheryProductInterface {
-  weight: number,
-  commodityType: string
 }
 
 interface VesselInterface {
@@ -20,7 +17,7 @@ interface HarborInterface {
 
 interface CaptureInterface {
   location: GPSLocationInterface,
-  fisheryProduct: FisheryProductInterface,
+  fisheryProduct: FisheryProductLotInterface,
   vessel: VesselInterface,
   harbor: HarborInterface
 }
