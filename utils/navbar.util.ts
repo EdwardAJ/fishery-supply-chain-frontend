@@ -33,15 +33,22 @@ const getHarborListItems = (): Array<ListItemInterface> => {
     {
       title: "Tangkap ikan",
       to: { path: RoutePaths.CAPTURE_FISHERY_PRODUCT }
+    },
+    {
+      title: "Olah Ikan",
+      to: { path: RoutePaths.PROCESS }
     }
   ]
 }
 
 const getProcessingUnitListItems = (): Array<ListItemInterface> => {
-  return [{
-    title: "Process",
-    to: { path: RoutePaths.PROCESS }
-  }]
+  return [
+    ...BASE_LIST_ITEMS,
+    {
+      title: "Olah Ikan",
+      to: { path: RoutePaths.PROCESS }
+    }
+  ]
 }
 
 const getListItems = (orgName: string): Array<ListItemInterface> => {

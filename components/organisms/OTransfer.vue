@@ -9,8 +9,7 @@
         <v-text-field
           v-model="transferPayload.currentLot.id"
           :rules="isNotEmptyRule"
-          label="ID Ikan"
-          type="text" />
+          label="ID Ikan" />
         <v-select
           v-model="transferPayload.toOrganization"
           label="Organisasi tujuan"

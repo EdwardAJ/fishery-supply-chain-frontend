@@ -1,9 +1,5 @@
 import { FisheryProductLotInterface } from "./fishery-product-lot.interface";
-
-interface GPSLocationInterface {
-  latitude: number,
-  longitude: number
-}
+import { GPSLocationInterface } from "./gps-location.interface";
 
 interface VesselInterface {
   id: string,

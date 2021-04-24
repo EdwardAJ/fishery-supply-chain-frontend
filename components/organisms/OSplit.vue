@@ -11,8 +11,7 @@
           v-model="splitPayload.currentLot.id"
           class="mb-5"
           :rules="isNotEmptyRule"
-          label="ID Ikan Sekarang"
-          type="text" />
+          label="ID Ikan Sekarang" />
         <v-row class="mt-4">
           <v-col class="d-flex">
             <p v-text="'Pecah menjadi:'" />
@@ -44,8 +43,7 @@
                 <v-text-field
                   v-model="newLot.commodityType"
                   :rules="isNotEmptyRule"
-                  label="Tipe komoditas"
-                  type="text" />
+                  label="Tipe komoditas" />
               </v-col>
               <v-btn
                 fab

@@ -9,8 +9,7 @@
         <v-text-field
           v-model="enrollAdminPayload.orgName"
           :rules="isNotEmptyRule"
-          label="Organization name"
-          type="text" />
+          label="Organization name" />
       </v-form>
       <v-btn
         form="enroll-admin"

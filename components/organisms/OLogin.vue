@@ -9,8 +9,7 @@
         <v-text-field
           v-model="loginPayload.username"
           :rules="isNotEmptyRule"
-          label="Username"
-          type="text" />
+          label="Username" />
         <v-text-field
           v-model="loginPayload.password"
           :rules="isNotEmptyRule"

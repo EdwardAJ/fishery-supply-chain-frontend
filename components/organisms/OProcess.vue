@@ -2,54 +2,53 @@
   <v-row class="d-flex justify-center align-center">
     <v-col>
       <v-form
-        id="capture"
+        id="process"
         ref="form"
         lazy-validation
-        @submit.prevent="capture">
+        @submit.prevent="process">
         <v-text-field
-          v-model="capturePayload.location.latitude"
+          v-model="processPayload.location.latitude"
           :rules="isNotEmptyRule"
           label="Latitude"
           type="number" />
         <v-text-field
-          v-model="capturePayload.location.longitude"
+          v-model="processPayload.location.longitude"
           :rules="isNotEmptyRule"
           label="Longitude"
           type="number" />
         <v-text-field
-          v-model="capturePayload.fisheryProduct.weight"
+          v-model="processPayload.supplier.id"
           :rules="isNotEmptyRule"
-          label="Berat (kg)"
-          type="number" />
+          label="ID Supplier" />
         <v-text-field
-          v-model="capturePayload.fisheryProduct.commodityType"
+          v-model="processPayload.supplier.name"
           :rules="isNotEmptyRule"
-          label="Tipe Komoditas" />
+          label="Nama Supplier" />
         <v-text-field
-          v-model="capturePayload.vessel.id"
+          v-model="processPayload.storage.id"
           :rules="isNotEmptyRule"
-          label="ID Kapal" />
+          label="ID Gudang" />
         <v-text-field
-          v-model="capturePayload.vessel.name"
+          v-model="processPayload.storage.name"
           :rules="isNotEmptyRule"
-          label="Nama Kapal" />
+          label="Nama Gudang" />
         <v-text-field
-          v-model="capturePayload.harbor.id"
+          v-model="processPayload.processTo.id"
           :rules="isNotEmptyRule"
-          label="ID Pelabuhan" />
+          label="ID Produk Olahan" />
         <v-text-field
-          v-model="capturePayload.harbor.name"
+          v-model="processPayload.processTo.name"
           :rules="isNotEmptyRule"
-          label="Nama Pelabuhan" />
+          label="Nama Produk Olahan" />
       </v-form>
       <v-row>
         <v-col class="text-right">
           <v-btn
             class="mt-4"
-            form="capture"
+            form="process"
             type="form"
             color="primary">
-            Tangkap
+            Olah
           </v-btn>
         </v-col>
       </v-row>
@@ -59,38 +58,41 @@
 
 <script lang="ts">
 import { Component, mixins } from "nuxt-property-decorator"
-import { CaptureInterface } from "~/interfaces/capture.interface"
+import { ProcessInterface } from "~/interfaces/process.interface"
 import { FormMixin } from "~/mixins/form.mixin"
 
 @Component({
-  name: "OCapture"
+  name: "OProcess"
 })
-export default class OCapture extends mixins(FormMixin) {
-  capturePayload: CaptureInterface = {
+export default class OProcess extends mixins(FormMixin) {
+  processPayload: ProcessInterface = {
     location: {
       longitude: 0,
       latitude: 0
     },
-    fisheryProduct: {
-      weight: 0,
-      commodityType: ""
+    currentLot: {
+      id: ""
     },
-    vessel: {
+    supplier: {
       id: "",
       name: ""
     },
-    harbor: {
+    storage: {
+      id: "",
+      name: ""
+    },
+    processTo: {
       id: "",
       name: ""
     }
   }
 
-  async capture (): Promise<void> {
+  async process (): Promise<void> {
     if (!(this.$refs.form as HTMLFormElement).validate()) { return }
     try {
       const lotId =
-        await this.$store.dispatch("capture/capture", this.capturePayload)
-      alert(`Id Ikan: ${lotId}`)
+        await this.$store.dispatch("process/process", this.processPayload)
+      alert(`Id Ikan hasil olahan: ${lotId}`)
     } catch (error) {
       console.log(error)
       this.$showErrorMessage(error)

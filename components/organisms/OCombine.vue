@@ -26,8 +26,7 @@
             v-model="lot.id"
             class="mr-5"
             :rules="isNotEmptyRule"
-            :label="`ID Ikan ${lotIndex + 1}`"
-            type="text" />
+            :label="`ID Ikan ${lotIndex + 1}`" />
           <v-btn
             fab
             x-small
@@ -50,8 +49,7 @@
         <v-text-field
           v-model="combinePayload.newLot.commodityType"
           :rules="isNotEmptyRule"
-          label="Tipe komoditas"
-          type="text" />
+          label="Tipe komoditas" />
       </v-form>
       <v-row>
         <v-col class="text-right">
