@@ -23,7 +23,7 @@ export default class TCapture extends Vue {}
 
 <style scoped lang="scss">
   .capture-container {
-    max-width: 300px;
+    max-width: 500px;
     height: 100vh;
   }
 </style>

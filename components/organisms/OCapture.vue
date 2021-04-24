@@ -47,13 +47,17 @@
           label="Nama Pelabuhan"
           type="string" />
       </v-form>
-      <v-btn
-        class="mt-4"
-        form="capture"
-        type="form"
-        color="primary">
-        Capture
-      </v-btn>
+      <v-row>
+        <v-col class="text-right">
+          <v-btn
+            class="mt-4"
+            form="capture"
+            type="form"
+            color="primary">
+            Capture
+          </v-btn>
+        </v-col>
+      </v-row>
     </v-col>
   </v-row>
 </template>

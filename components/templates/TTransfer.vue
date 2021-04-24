@@ -23,7 +23,7 @@ export default class TTransfer extends Vue {}
 
 <style scoped lang="scss">
   .transfer-container {
-    max-width: 300px;
+    max-width: 500px;
     height: 100vh;
   }
 </style>
