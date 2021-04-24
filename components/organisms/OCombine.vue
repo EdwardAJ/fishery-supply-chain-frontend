@@ -6,6 +6,17 @@
         ref="form"
         lazy-validation
         @submit.prevent="combine">
+        <!-- Add button -->
+        <v-row class="mb-6">
+          <v-col class="text-right">
+            <v-btn
+              small
+              class="mb-n4"
+              @click="addLot">
+              Tambah ID
+            </v-btn>
+          </v-col>
+        </v-row>
         <!-- Fish lot Id and delete button -->
         <div
           v-for="(lot, lotIndex) in lots"
@@ -18,26 +29,21 @@
             :label="`ID Ikan ${lotIndex + 1}`"
             type="text" />
           <v-btn
+            fab
+            x-small
             color="red"
-            class="white--text mt-3"
+            class="mt-4 white--text"
             @click="deleteLot">
-            Hapus
+            <v-icon> mdi-delete </v-icon>
           </v-btn>
         </div>
-        <!-- Add button -->
-        <v-row class="mb-6">
-          <v-col class="text-right">
-            <v-btn
-              class="mt-4"
-              color="primary"
-              @click="addNewLot">
-              Tambah ID
-            </v-btn>
-          </v-col>
-        </v-row>
+        <p class="mt-6">
+          Informasi ikan baru:
+        </p>
         <!-- New lot information -->
         <v-text-field
           v-model="combinePayload.newLot.weight"
+          class="mt-4"
           :rules="isNotEmptyRule"
           label="Berat ikan (kg)"
           type="number" />
@@ -85,7 +91,7 @@ export default class OCombine extends mixins(FormMixin) {
     }
   }
 
-  addNewLot (): void {
+  addLot (): void {
     this.lots.push({ id: "" })
   }
 
