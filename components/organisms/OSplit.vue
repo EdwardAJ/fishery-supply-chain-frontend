@@ -91,7 +91,7 @@ export default class OSplit extends mixins(FormMixin) {
     currentLot: {
       id: ""
     },
-    newLot: []
+    newLots: []
   }
 
   addNewLot (): void {
@@ -105,9 +105,10 @@ export default class OSplit extends mixins(FormMixin) {
   async split (): Promise<void> {
     if (!(this.$refs.form as HTMLFormElement).validate()) { return }
     try {
-      this.splitPayload.newLot = this.newLots
-      const lotId =
-        await this.$store.dispatch("split/split", this.splitPayload)
+      this.splitPayload.newLots = this.newLots
+      console.log(this.splitPayload)
+      // const lotId =
+      await this.$store.dispatch("split/split", this.splitPayload)
     } catch (error) {
       console.log(error)
       this.$showErrorMessage(error)

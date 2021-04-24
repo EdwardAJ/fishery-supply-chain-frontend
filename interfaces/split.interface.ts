@@ -4,5 +4,5 @@ export interface SplitInterface {
   currentLot: {
     id: string
   },
-  newLot: FisheryProductLotInterface[]
+  newLots: FisheryProductLotInterface[]
 }
