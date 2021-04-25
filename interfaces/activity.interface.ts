@@ -1,4 +1,4 @@
-import { FisheryProductLotInterface } from "./fishery-product-lot.interface";
+import { FisheryProductLotInterface } from "./fishery-product-lot.interface"
 
 export interface ActivityInterface {
   id: string;

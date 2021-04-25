@@ -15,9 +15,9 @@
 import { Vue, Prop, Component } from "nuxt-property-decorator"
 import { FisheryProductLotInterface } from "~/interfaces/fishery-product-lot.interface"
 @Component({
-  name: "MProductLot"
+  name: "MProductLotCard"
 })
-export default class MProductLot extends Vue {
+export default class MProductLotCard extends Vue {
   @Prop({ type: Object, required: true }) productLot: FisheryProductLotInterface
   @Prop({ type: String, default: "210" }) width: string
 }

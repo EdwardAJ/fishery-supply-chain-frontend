@@ -19,7 +19,7 @@ import { SnackbarDataInterface } from "~/interfaces/snackbar.interface"
 })
 export default class SnackBar extends Vue {
   @Getter("snackbar/getSnackbarData") snackbarData: SnackbarDataInterface
-  timeout = 2000
+  timeout = 1500
 
   snackbar: SnackbarDataInterface = {
     status: false,
