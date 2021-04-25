@@ -74,11 +74,7 @@
           v-for="(resultLot) in resultLotsFromBackend"
           :key="resultLot.id"
           class="ml-2 mb-2">
-          <v-row class="d-flex">
-            <v-col>
-              <MProductLotCard :product-lot="resultLot" />
-            </v-col>
-          </v-row>
+          <MProductLotCard :product-lot="resultLot" />
         </v-col>
       </v-row>
     </v-col>
