@@ -68,6 +68,20 @@
         </v-col>
       </v-row>
     </v-col>
+    <v-col>
+      <v-row>
+        <v-col
+          v-for="(resultLot) in resultLotsFromBackend"
+          :key="resultLot.id"
+          class="ml-2 mb-2">
+          <v-row class="d-flex">
+            <v-col>
+              <MProductLotCard :product-lot="resultLot" />
+            </v-col>
+          </v-row>
+        </v-col>
+      </v-row>
+    </v-col>
   </v-row>
 </template>
 <script lang="ts">
@@ -75,9 +89,14 @@
 import { Component, mixins } from "nuxt-property-decorator"
 import { FormMixin } from "~/mixins/form.mixin"
 import { SplitInterface } from "~/interfaces/split.interface"
+import { FisheryProductLotInterface } from "~/interfaces/fishery-product-lot.interface"
+import MProductLotCard from "~/components/molecules/MProductLotCard.vue"
 
 @Component({
-  name: "OSplit"
+  name: "OSplit",
+  components: {
+    MProductLotCard
+  }
 })
 export default class OSplit extends mixins(FormMixin) {
   newLots = [{
@@ -92,6 +111,8 @@ export default class OSplit extends mixins(FormMixin) {
     newLots: []
   }
 
+  resultLotsFromBackend: FisheryProductLotInterface[] = []
+
   addNewLot (): void {
     this.newLots.push({ weight: 0, commodityType: "" })
   }
@@ -104,9 +125,13 @@ export default class OSplit extends mixins(FormMixin) {
     if (!(this.$refs.form as HTMLFormElement).validate()) { return }
     try {
       this.splitPayload.newLots = this.newLots
-      console.log(this.splitPayload)
-      // const lotId =
-      await this.$store.dispatch("split/split", this.splitPayload)
+      this.resultLotsFromBackend = []
+      const activities = await this.$store.dispatch("split/split", this.splitPayload)
+      alert("Pemecahan ikan berhasil!")
+      activities.map(({ lot }) =>
+        this.resultLotsFromBackend.push({
+          id: lot.id, weight: lot.weight, commodityType: lot.commodityType
+        }))
     } catch (error) {
       console.log(error)
       this.$showErrorMessage(error)

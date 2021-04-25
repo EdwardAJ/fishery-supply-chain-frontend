@@ -23,7 +23,7 @@ export default class TSplit extends Vue {}
 
 <style scoped lang="scss">
   .split-container {
-    max-width: 500px;
+    max-width: 1000px;
     height: 100vh;
   }
 </style>
