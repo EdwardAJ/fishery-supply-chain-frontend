@@ -66,7 +66,6 @@ export default class MActivityCard extends Vue {
   @Prop({ type: Object, required: true }) activity: ActivityInterface
 
   onClickParentIdObject (parentIdObject: ParentInterface) {
-    console.log(parentIdObject)
     this.$emit("onClickParentIdObject", parentIdObject)
   }
 }

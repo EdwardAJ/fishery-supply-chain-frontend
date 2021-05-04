@@ -8,5 +8,6 @@ export interface ActivityInterface {
     username: string,
     organizationName: string
   },
+  name: string,
   createdAt: string
 }

@@ -2,6 +2,7 @@ enum RoutePaths {
   DASHBOARD = "/dashboard",
   LOGIN = "/login",
   ENROLL_ADMIN = "/dashboard/enroll",
+  REGISTER_USER = "/dashboard/register",
   CAPTURE_FISHERY_PRODUCT = "/dashboard/capture",
   PROCESS = "/dashboard/process",
   TRANSFER = "/dashboard/transfer",

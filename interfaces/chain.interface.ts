@@ -4,6 +4,19 @@ interface ChainParamsInterface {
   chainId: string
 }
 
+interface NodeInterface {
+  id: string,
+  label: string
+}
+
+interface EdgeInterface {
+  id: string,
+  from: string,
+  to: string
+}
+
 export {
-  ChainParamsInterface
+  ChainParamsInterface,
+  NodeInterface,
+  EdgeInterface
 }

@@ -10,6 +10,10 @@
           v-model="transferPayload.currentLot.id"
           :rules="isNotEmptyRule"
           label="ID Ikan" />
+        <v-text-field
+          v-model="transferPayload.toUsername"
+          :rules="isNotEmptyRule"
+          label="Nama pengguna tujuan" />
         <v-select
           v-model="transferPayload.toOrganization"
           label="Organisasi tujuan"
@@ -45,6 +49,7 @@ export default class OTransfer extends mixins(RouteMixin, FormMixin) {
     currentLot: {
       id: ""
     },
+    toUsername: "",
     toOrganization: ""
   }
 

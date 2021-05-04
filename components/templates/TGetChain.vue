@@ -23,7 +23,7 @@ export default class TGetChain extends Vue {}
 
 <style scoped lang="scss">
   .get-chain-container {
-    max-width: 500px;
+    max-width: 1000px;
     height: 100vh;
   }
 </style>

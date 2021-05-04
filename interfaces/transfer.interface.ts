@@ -3,4 +3,5 @@ export interface TransferInterface {
     id: string
   },
   toOrganization: string
+  toUsername: string
 }

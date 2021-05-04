@@ -5,6 +5,11 @@ enum OrgNames {
   MINSTRY = "KKP RI"
 }
 
+enum OrgRoles {
+  ADMIN = "admin",
+  USER = "user"
+}
+
 const ORG_NAME_ARRAY = [
   "Pelabuhan",
   "Unit Pengolahan Ikan (UPI)",
@@ -13,5 +18,6 @@ const ORG_NAME_ARRAY = [
 
 export {
   OrgNames,
+  OrgRoles,
   ORG_NAME_ARRAY
 }

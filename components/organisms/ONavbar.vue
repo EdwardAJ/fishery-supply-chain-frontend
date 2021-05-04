@@ -37,10 +37,12 @@ import { getListItems } from "~/utils/navbar.util"
 })
 export default class ONavbar extends mixins(RouteMixin) {
   @Getter("auth/getOrganization") organization: string
+  @Getter("auth/getRole") role: string
+
   listItems: Array<ListItemInterface> = []
 
   mounted () {
-    this.listItems = getListItems(this.organization)
+    this.listItems = getListItems(this.organization, this.role)
   }
 
   logout () {

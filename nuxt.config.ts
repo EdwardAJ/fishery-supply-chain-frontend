@@ -24,7 +24,8 @@ export default {
   plugins: [
     "~/plugins/axios",
     "~/plugins/axios-accessor",
-    "~/plugins/error-handling"
+    "~/plugins/error-handling",
+    { src: "~/plugins/vis", mode: "client" }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

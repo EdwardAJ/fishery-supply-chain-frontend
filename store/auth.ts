@@ -15,6 +15,7 @@ import { CookieNames, CookieExpiryDay } from "~/constants/cookie/cookie.constant
 export default class Auth extends VuexModule {
   token: string | null = null
   organization: string | null = null
+  role: string | null = null
 
   @Mutation
   setAccessToken (token: string | null): void {
@@ -26,6 +27,11 @@ export default class Auth extends VuexModule {
     this.organization = organization
   }
 
+  @Mutation
+  setRole (role: string | null): void {
+    this.role = role
+  }
+
   @Action({ rawError: true })
   async register (payload: RegisterInterface): Promise<string> {
     const { data: { password } } = await $axios.$post("/register", payload)
@@ -34,9 +40,10 @@ export default class Auth extends VuexModule {
 
   @Action({ rawError: true })
   async login (payload: LoginInterface): Promise<void> {
-    const { data: { token, organization } } = await $axios.$post("/login", payload)
+    const { data: { token, organization, role } } = await $axios.$post("/login", payload)
     this.context.commit("setAccessToken", token)
     this.context.commit("setOrganization", organization)
+    this.context.commit("setRole", role)
     setCookie(CookieNames.AUTH, token, CookieExpiryDay.ONE_DAY)
     setCookie(CookieNames.ORGANIZATION, organization, CookieExpiryDay.ONE_DAY)
   }
@@ -60,5 +67,9 @@ export default class Auth extends VuexModule {
 
   get getOrganization (): string | null {
     return this.organization
+  }
+
+  get getRole (): string | null {
+    return this.role
   }
 }
