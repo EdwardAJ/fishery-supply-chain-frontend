@@ -18,6 +18,10 @@ const BASE_LIST_ITEMS: ListItemInterface[] = [
   {
     title: "Lihat Rantai",
     to: { path: RoutePaths.GET_CHAIN }
+  },
+  {
+    title: "Lihat Agregasi",
+    to: { path: RoutePaths.GET_AGGREGATION }
   }
 ]
 

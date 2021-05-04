@@ -9,7 +9,8 @@ enum RoutePaths {
   COMBINE = "/dashboard/combine",
   MARKET = "/dashboard/market",
   SPLIT = "/dashboard/split",
-  GET_CHAIN = "/dashboard/get-chain"
+  GET_CHAIN = "/dashboard/get-chain",
+  GET_AGGREGATION = "/dashboard/get-aggregation"
 }
 
 export {
