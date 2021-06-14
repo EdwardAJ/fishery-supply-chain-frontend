@@ -8,6 +8,7 @@ services:
       dockerfile: Dockerfile
     network_mode: host
     environment:
+      - HOST=0.0.0.0
       - PORT=3001
       - BASE_URL=http://3.239.64.185:8001
       - ORG_NAME=Pelabuhan
@@ -19,6 +20,7 @@ services:
       dockerfile: Dockerfile
     network_mode: host
     environment:
+      - HOST=0.0.0.0
       - PORT=3002
       - BASE_URL=http://3.239.64.185:8002
       - ORG_NAME=Unit Pengolahan Ikan (UPI)
@@ -30,10 +32,11 @@ services:
       dockerfile: Dockerfile
     network_mode: host
     environment:
+      - HOST=0.0.0.0
       - PORT=3003
       - BASE_URL=http://3.239.64.185:8003
       - ORG_NAME=Pemasar
-    command: sh -c "rm -rf node_modules && yarn install"
+    command: sh -c "rm -rf node_modules && yarn install && yarn dev"
   frontend.org4:
     container_name: frontend.org4
     build:
@@ -41,9 +44,10 @@ services:
       dockerfile: Dockerfile
     network_mode: host
     environment:
+      - HOST=0.0.0.0
       - PORT=3004
       - BASE_URL=http://3.239.64.185:8004
       - ORG_NAME=Publik
-    command: sh -c "rm -rf node_modules && yarn install"
+    command: sh -c "rm -rf node_modules && yarn install && yarn dev"
 
 
