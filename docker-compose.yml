@@ -10,7 +10,7 @@ services:
     environment:
       - HOST=0.0.0.0
       - PORT=3001
-      - BASE_URL=http://3.239.64.185:8001
+      - BASE_URL=http://3.238.62.220:8001
       - ORG_NAME=Pelabuhan
     command: sh -c "rm -rf node_modules && yarn install && yarn dev"
   frontend.org2:
@@ -22,7 +22,7 @@ services:
     environment:
       - HOST=0.0.0.0
       - PORT=3002
-      - BASE_URL=http://3.239.64.185:8002
+      - BASE_URL=http://3.238.62.220:8002
       - ORG_NAME=Unit Pengolahan Ikan (UPI)
     command: sh -c "rm -rf node_modules && yarn install && yarn dev"
   frontend.org3:
@@ -34,7 +34,7 @@ services:
     environment:
       - HOST=0.0.0.0
       - PORT=3003
-      - BASE_URL=http://3.239.64.185:8003
+      - BASE_URL=http://3.238.62.220:8003
       - ORG_NAME=Pemasar
     command: sh -c "rm -rf node_modules && yarn install && yarn dev"
   frontend.org4:
@@ -46,7 +46,7 @@ services:
     environment:
       - HOST=0.0.0.0
       - PORT=3004
-      - BASE_URL=http://3.239.64.185:8004
+      - BASE_URL=http://3.238.62.220:8004
       - ORG_NAME=Publik
     command: sh -c "rm -rf node_modules && yarn install && yarn dev"
 
