@@ -17,12 +17,12 @@
           label="Longitude"
           type="number" />
         <v-text-field
-          v-model="capturePayload.fisheryProduct.weight"
+          v-model="capturePayload.lot.weight"
           :rules="isNotEmptyRule"
           label="Berat (kg)"
           type="number" />
         <v-text-field
-          v-model="capturePayload.fisheryProduct.commodityType"
+          v-model="capturePayload.lot.commodityType"
           :rules="isNotEmptyRule"
           label="Tipe Komoditas" />
         <v-text-field
@@ -71,7 +71,7 @@ export default class OCapture extends mixins(FormMixin) {
       longitude: 0,
       latitude: 0
     },
-    fisheryProduct: {
+    lot: {
       weight: 0,
       commodityType: ""
     },

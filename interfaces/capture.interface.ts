@@ -13,7 +13,7 @@ interface HarborInterface {
 
 interface CaptureInterface {
   location: GPSLocationInterface,
-  fisheryProduct: FisheryProductLotInterface,
+  lot: FisheryProductLotInterface,
   vessel: VesselInterface,
   harbor: HarborInterface
 }

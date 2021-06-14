@@ -14,17 +14,11 @@ import { CookieNames, CookieExpiryDay } from "~/constants/cookie/cookie.constant
 })
 export default class Auth extends VuexModule {
   token: string | null = null
-  organization: string | null = null
   role: string | null = null
 
   @Mutation
   setAccessToken (token: string | null): void {
     this.token = token
-  }
-
-  @Mutation
-  setOrganization (organization: string | null): void {
-    this.organization = organization
   }
 
   @Mutation
@@ -40,12 +34,11 @@ export default class Auth extends VuexModule {
 
   @Action({ rawError: true })
   async login (payload: LoginInterface): Promise<void> {
-    const { data: { token, organization, role } } = await $axios.$post("/login", payload)
+    const { data: { token, role } } = await $axios.$post("/login", payload)
     this.context.commit("setAccessToken", token)
-    this.context.commit("setOrganization", organization)
     this.context.commit("setRole", role)
     setCookie(CookieNames.AUTH, token, CookieExpiryDay.ONE_DAY)
-    setCookie(CookieNames.ORGANIZATION, organization, CookieExpiryDay.ONE_DAY)
+    setCookie(CookieNames.ROLE, role, CookieExpiryDay.ONE_DAY)
   }
 
   @Action({ rawError: true })
@@ -58,15 +51,11 @@ export default class Auth extends VuexModule {
   logout (): void {
     this.context.commit("setAccessToken", null)
     removeCookie(CookieNames.AUTH)
-    removeCookie(CookieNames.ORGANIZATION)
+    removeCookie(CookieNames.ROLE)
   }
 
   get getAccessToken (): string | null {
     return this.token
-  }
-
-  get getOrganization (): string | null {
-    return this.organization
   }
 
   get getRole (): string | null {

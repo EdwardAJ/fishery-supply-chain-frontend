@@ -47,6 +47,10 @@ export default {
     baseURL: process.env.BASE_URL
   },
 
+  env: {
+    orgName: process.env.ORG_NAME
+  },
+
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     customVariables: ["~/assets/variables.scss"],
@@ -60,6 +64,10 @@ export default {
         }
       }
     }
+  },
+
+  server: {
+    port: process.env.PORT
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

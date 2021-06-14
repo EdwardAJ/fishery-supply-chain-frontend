@@ -10,10 +10,6 @@
           v-model="registerPayload.username"
           :rules="isNotEmptyRule"
           label="Nama Pengguna" />
-        <v-select
-          v-model="registerPayload.orgName"
-          label="Nama Organisasi"
-          :items="[organization]" />
       </v-form>
       <v-btn
         form="register-user"
@@ -37,10 +33,8 @@ import { FormMixin } from "~/mixins/form.mixin"
 export default class ORegister extends mixins(FormMixin) {
   registerPayload: RegisterInterface = {
     username: "",
-    orgName: ""
+    orgName: process.env.orgName as string
   }
-
-  @Getter("auth/getOrganization") organization: string
 
   async registerUser (): Promise<void> {
     if (!(this.$refs.form as HTMLFormElement).validate()) { return }

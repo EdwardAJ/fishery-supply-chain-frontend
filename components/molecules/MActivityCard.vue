@@ -10,7 +10,7 @@
         v-if="activity.name === 'Transfer'"
         :activity="activity" />
       <MProcessCardContent
-        v-if="activity.name === 'Pengolahan'"
+        v-if="activity.name === 'Olah'"
         :activity="activity" />
       <MMarketCardContent
         v-if="activity.name === 'Pasarkan'"
@@ -36,9 +36,11 @@
       <p class="mt-n3" v-html="`ID: <b> ${activity.lot.id} </b>`" />
       <p class="mt-n3" v-html="`Berat: <b> ${activity.lot.weight} kg </b>`" />
       <p class="mt-n3" v-html="`Tipe Komoditas: <b> ${activity.lot.commodityType} </b>`" />
+      <p v-if="activity.name === 'Pasarkan'" v-html="`Pemilik: <b> Pasar </b>`" />
       <p
+        v-else
         class="mt-n3"
-        v-html="`Pemilik: <b> ${activity.lot.owner.username} / ${activity.lot.owner.organizationName} </b>`" />
+        v-html="`Pemilik: <b> ${activity.lot.owner.username} / ${activity.lot.owner.organization} </b>`" />
     </v-card-text>
   </v-card>
 </template>

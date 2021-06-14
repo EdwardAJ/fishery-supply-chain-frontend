@@ -5,7 +5,7 @@
         <v-list-item-title v-text="organization" />
       </v-list-item-content>
     </v-list-item>
-    <v-list-item>
+    <v-list-item v-if="organization !== 'Publik'">
       <v-list-item-content>
         <v-list-item-subtitle
           class="logout"
@@ -36,12 +36,13 @@ import { getListItems } from "~/utils/navbar.util"
   name: "ONavbar"
 })
 export default class ONavbar extends mixins(RouteMixin) {
-  @Getter("auth/getOrganization") organization: string
   @Getter("auth/getRole") role: string
 
   listItems: Array<ListItemInterface> = []
+  organization: string = ""
 
   mounted () {
+    this.organization = process.env.orgName as string
     this.listItems = getListItems(this.organization, this.role)
   }
 

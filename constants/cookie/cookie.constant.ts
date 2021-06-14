@@ -1,6 +1,6 @@
 enum CookieNames {
   AUTH = "Authorization",
-  ORGANIZATION = "Organization"
+  ROLE = "Role"
 }
 
 enum CookieExpiryDay {

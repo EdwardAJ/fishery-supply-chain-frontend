@@ -23,7 +23,7 @@ export default class TGetAggregation extends Vue {}
 
 <style scoped lang="scss">
   .aggregation-container {
-    max-width: 1000px;
+    max-width: 500px;
     height: 100vh;
   }
 </style>

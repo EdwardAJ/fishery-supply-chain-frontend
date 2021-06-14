@@ -19,6 +19,7 @@ export default class Chain extends VuexModule {
   async get (params: ChainParamsInterface): Promise<ActivityInterface[]> {
     const { data: { chain } } =
       await $axios.$get("/activity/", { params })
+    console.log("chain: ", chain)
     return chain
   }
 

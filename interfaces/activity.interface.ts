@@ -6,7 +6,7 @@ export interface ActivityInterface {
   lot: FisheryProductLotInterface,
   owner: {
     username: string,
-    organizationName: string
+    organization: string
   },
   name: string,
   createdAt: string

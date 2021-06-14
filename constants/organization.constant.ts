@@ -2,7 +2,8 @@ enum OrgNames {
   HARBOR = "Pelabuhan",
   PROCESSING_UNIT = "Unit Pengolahan Ikan (UPI)",
   MARKETER = "Pemasar",
-  MINSTRY = "KKP RI"
+  MINSTRY = "KKP RI",
+  PUBLIC = "Publik"
 }
 
 enum OrgRoles {

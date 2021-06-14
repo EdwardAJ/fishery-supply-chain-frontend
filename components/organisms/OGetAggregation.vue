@@ -26,14 +26,10 @@
           </v-btn>
         </v-col>
       </v-row>
-    </v-col>
-    <v-col>
-      <v-row>
-        <v-col
-          v-for="(productLot) in productLots"
-          :key="productLot.id"
-          class="ml-2 mb-2">
-          <MProductLotCard :product-lot="productLot" />
+      <v-row :key="`weight-${totalWeight}`">
+        <v-col>
+          <p> Berat Total (kg) </p>
+          <p v-text="totalWeight" />
         </v-col>
       </v-row>
     </v-col>
@@ -43,23 +39,19 @@
 
 import { Component, mixins, Getter } from "nuxt-property-decorator"
 import { FormMixin } from "~/mixins/form.mixin"
-import { FisheryProductLotInterface } from "~/interfaces/fishery-product-lot.interface"
-import MProductLotCard from "~/components/molecules/MProductLotCard.vue"
 
 @Component({
-  name: "OGetAggregation",
-  components: {
-    MProductLotCard
-  }
+  name: "OGetAggregation"
 })
+
 export default class OGetAggregation extends mixins(FormMixin) {
-  @Getter("aggregate/getProductLots") productLots: FisheryProductLotInterface[]
+  @Getter("aggregate/getTotalWeight") totalWeight: number
 
   vesselId: string = ""
   harborId: string = ""
 
   mounted () {
-    this.$store.commit("aggregate/setProductLots", [])
+    this.$store.commit("aggregate/setTotalWeight", 0)
   }
 
   async getAggregation (): Promise<void> {

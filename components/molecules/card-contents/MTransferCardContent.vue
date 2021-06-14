@@ -3,7 +3,7 @@
   <div>
     <p
       class="mt-n3"
-      v-html="`Dari: <b> ${activity.from.username} / ${activity.from.organizationName} </b>`" />
+      v-html="`Dari: <b> ${activity.from.username} / ${activity.from.organization} </b>`" />
   </div>
 </template>
 <script lang="ts">

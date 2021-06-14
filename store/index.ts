@@ -7,7 +7,7 @@ export const actions: ActionTree<{}, {}> = {
   async nuxtServerInit ({ commit }, { req }): Promise<void> {
     const cookie = await cookieParser.parse(req.headers.cookie || "")
     const token = cookie[CookieNames.AUTH]
-    const organization = cookie[CookieNames.ORGANIZATION]
+    const role = cookie[CookieNames.ROLE]
 
     if (token) {
       commit("auth/setAccessToken", token)
@@ -15,10 +15,10 @@ export const actions: ActionTree<{}, {}> = {
       commit("auth/setAccessToken", null)
     }
 
-    if (organization) {
-      commit("auth/setOrganization", organization)
+    if (role) {
+      commit("auth/setRole", role)
     } else {
-      commit("auth/setOrganization", null)
+      commit("auth/setRole", null)
     }
   }
 }

@@ -1,28 +1,26 @@
 import { VuexModule, Module, Action, Mutation } from "vuex-module-decorators"
 import { $axios } from "~/utils/api.util"
-import { CaptureInterface } from "~/interfaces/capture.interface"
 import { AggregateInterface } from "~/interfaces/aggregate.interface"
-import { FisheryProductLotInterface } from "~/interfaces/fishery-product-lot.interface"
 
 @Module({
   namespaced: true,
   stateFactory: true
 })
 export default class Aggregate extends VuexModule {
-  public productLots: FisheryProductLotInterface[] = []
+  public totalWeight: number = 0
 
   @Mutation
-  setProductLots (productLots: FisheryProductLotInterface[]): void {
-    this.productLots = productLots
+  setTotalWeight (totalWeight: number): void {
+    this.totalWeight = totalWeight
   }
 
-  @Action({ rawError: true, commit: "setProductLots" })
-  async get (params: AggregateInterface): Promise<FisheryProductLotInterface[]> {
-    const { data: productLots } = await $axios.$get("/lot/", { params })
-    return productLots
+  @Action({ rawError: true, commit: "setTotalWeight" })
+  async get (params: AggregateInterface): Promise<number> {
+    const { data: { totalWeight } } = await $axios.$get("/aggregation/", { params })
+    return totalWeight
   }
 
-  get getProductLots (): FisheryProductLotInterface[] {
-    return this.productLots
+  get getTotalWeight (): number {
+    return this.totalWeight
   }
 }
